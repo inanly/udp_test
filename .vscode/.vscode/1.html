@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HoloFans API Integration Example</title>
+    <script>
+        async function fetchData() {
+            const url = 'https://github.com/holofans/holoapi'; // 請替換為 HoloFans API 的實際端點
+            const response = await fetch(url);
+
+            if (response.ok) {
+                const data = await response.json();
+                displayData(data);
+            } else {
+                console.error('Error fetching data:', response.status, response.statusText);
+            }
+        }
+
+        function displayData(data) {
+            const output = document.getElementById('output');
+            output.innerHTML = JSON.stringify(data, null, 2);
+        }
+
+        window.addEventListener('DOMContentLoaded', (event) => {
+            fetchData();
+        });
+    </script>
+</head>
+<body>
+    <h1>HoloFans API Integration Example</h1>
+    <pre id="output"></pre>
+</body>
+</html>

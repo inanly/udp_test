@@ -1,0 +1,54 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Launch abc",
+      "request": "launch",
+      "mainClass": "abc",
+      "projectName": ".vscode_a9ae53f4"
+    },
+    {
+      "type": "java",
+      "name": "Launch HW3_411030583",
+      "request": "launch",
+      "mainClass": "HW3_411030583",
+      "projectName": ".vscode_a9ae53f4"
+    },
+    {
+      "type": "java",
+      "name": "Launch HW2_411030583",
+      "request": "launch",
+      "mainClass": "HW2_411030583",
+      "projectName": ".vscode_a9ae53f4"
+    },
+    {
+      "type": "java",
+      "name": "Launch App",
+      "request": "launch",
+      "mainClass": "App",
+      "projectName": ".vscode_a9ae53f4"
+    },
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "cppdbg",
+      "request": "launch",
+      "args": [],
+      "stopAtEntry": false,
+      "cwd": "c:\\Users\\User\\Desktop\\C++\\.vscode",
+      "environment": [],
+      "program": "c:\\Users\\User\\Desktop\\C++\\.vscode\\build\\Debug\\outDebug",
+      "internalConsoleOptions": "openOnSessionStart",
+      "MIMode": "gdb",
+      "miDebuggerPath": "C:\\MinGW\\bin\\gdb.exe",
+      "externalConsole": false,
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ]
+    }
+  ]
+}

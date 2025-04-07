@@ -1,0 +1,29 @@
+html{
+  font-family: fantsy, sans-serif;
+  background-image: url("../images/2.png");
+}
+body{
+  margin: 0;
+}
+header{
+  background-color: purple;
+  height: 100px;
+}
+h1{
+  font-family: fantasy, sans-serif;
+  font-size: 250%;
+  text-align: center;
+  color:black;
+  line-height: 100px;
+  margin: 0;
+}
+article{
+  padding: 10px;
+  margin: 20px;
+  background-color: antiquewhite;
+}
+.center{
+  text-align: center;
+  font-size: 200%;
+  font-weight: bolder;
+}
