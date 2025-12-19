@@ -1,0 +1,14 @@
+# rt-app-service.yaml 
+apiVersion: v1
+kind: Service
+metadata:
+  name: rt-app-service
+spec:
+  type: NodePort         # <-- 1. 將類型改為 NodePort
+  selector:
+    app: rt-udp-server
+  ports:
+    - protocol: UDP
+      port: 50005       # Service 內部的 ClusterIP 埠號 
+      targetPort: 50005 # Pod 內部的埠號 
+      nodePort: 30005   # <-- 2. 指定 NodePort，必須對應 kind-config.yaml

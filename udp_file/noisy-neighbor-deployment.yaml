@@ -1,0 +1,25 @@
+# noisy-neighbor-deployment.yaml
+apiVersion: apps/v1
+kind: Deployment # Use Deployment to manage multiple identical Pods
+metadata:
+  name: noisy-neighbor-deployment
+spec:
+  replicas: 2 # Start 2 noisy neighbor Pods, can be adjusted later
+  selector:
+    matchLabels:
+      app: noisy-neighbor
+  template: # Pod template definition
+    metadata:
+      labels:
+        app: noisy-neighbor # Label the Pod
+    spec:
+      containers:
+      - name: stress-container
+        image: yeven880601/noisy-neighbor:latest # Use your uploaded image
+        resources:
+          # To let the noisy neighbor consume as many resources as possible,
+          # we set higher requests but also limits to avoid crashing the kind node
+          requests:
+            cpu: "500m" # Request 0.5 CPU
+          limits:
+            cpu: "1"    # Maximum 1 CPU

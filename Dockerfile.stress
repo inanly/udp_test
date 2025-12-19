@@ -1,8 +1,0 @@
-# Dockerfile.stress
-
-# 1. 直接使用一個別人已經製作好的、內含 stress-ng 的多平台映像檔
-#    版本標籤(tag)只需要指定 'latest'
-FROM alexeldeib/stress-ng:latest
-
-# 2. 明確指定我們希望容器啟動時執行的指令
-CMD ["stress-ng", "--cpu", "1", "--cpu-load", "100", "--timeout", "0"]

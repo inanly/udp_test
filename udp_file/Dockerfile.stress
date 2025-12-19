@@ -1,0 +1,20 @@
+# Dockerfile.stress
+# This Dockerfile creates a stress testing container using stress-ng
+# 
+# Base image:
+#   - Uses alexeldeib/stress-ng:latest which contains the stress-ng utility
+#
+# Command:
+#   - Runs stress-ng with the following parameters:
+#     * --cpu 1: Use 1 CPU worker
+#     * --cpu-load 100: Set CPU load to 100%
+#     * --timeout 0: Run indefinitely (no timeout)
+#
+# Use case:
+#   - Useful for CPU stress testing and performance analysis
+#   - Can be used to simulate high CPU load conditions
+
+
+FROM alexeldeib/stress-ng:latest
+
+CMD ["stress-ng", "--cpu", "1", "--cpu-load", "100", "--timeout", "0"]

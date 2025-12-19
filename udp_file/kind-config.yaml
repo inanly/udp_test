@@ -1,0 +1,11 @@
+# kind-config.yaml
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+nodes:
+- role: control-plane
+  # 這是關鍵：將您電腦(Host)的 50005 埠 (UDP)
+  # 映射到 kind 節點(Container) 內部的 30005 埠 (UDP)
+  extraPortMappings:
+  - containerPort: 30005  # 這是我們即將在 K8s Service 中指定的 NodePort
+    hostPort: 50005       # 這是您電腦上 udp_client.py 要連線的埠號
+    protocol: UDP
