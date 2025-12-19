@@ -1,0 +1,58 @@
+# controller.yaml
+
+# 1. サービスアカウント (ServiceAccount) - コントローラ用の認証情報
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: rt-controller-sa
+  namespace: default
+
+---
+
+# 2. クラスタロール (ClusterRole) - 権限の範囲を定義
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: rt-controller-role
+rules:
+  - apiGroups: [""]
+    resources: ["pods"] # Pods に対する操作を許可
+    verbs: ["list", "watch", "get", "patch"] # 許可する操作：list、watch、get、patch（一覧、監視、取得、パッチ）
+
+---
+# 3. ClusterRoleBinding - 権限をサービスアカウントへバインド
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: rt-controller-binding
+subjects:
+  - kind: ServiceAccount
+    name: rt-controller-sa
+    namespace: default
+roleRef:
+  kind: ClusterRole
+  name: rt-controller-role
+  apiGroup: rbac.authorization.k8s.io
+
+---
+# 4. Deployment - コントローラをデプロイ（起動）
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rt-controller-deployment
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rt-controller
+  template:
+    metadata:
+      labels:
+        app: rt-controller
+    spec:
+      serviceAccountName: rt-controller-sa # 上で定義した権限つきの ServiceAccount を使用
+      containers:
+      - name: controller
+        image: yeven880601/rt-controller:v2
+        imagePullPolicy: Always
