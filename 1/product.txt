@@ -1,4 +1,0 @@
-HardDisk:2500:120
-HandPhone:15000:75
-PC:30000:5
-Notebook:45000:12
