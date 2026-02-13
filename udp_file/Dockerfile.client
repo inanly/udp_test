@@ -1,0 +1,12 @@
+FROM python:3.9-slim
+
+WORKDIR /app
+
+# 把 client 程式複製進去
+COPY udp_client.py .
+
+# 這是讓 Python log 即時顯示的設定
+ENV PYTHONUNBUFFERED=1
+
+# 預設執行指令 (IP 會在執行時透過參數傳入)
+ENTRYPOINT ["python", "udp_client.py"]

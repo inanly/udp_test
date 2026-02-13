@@ -1,0 +1,27 @@
+# kind-config-cpu.yaml
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+nodes:
+- role: control-plane
+  # 1. Network configuration (retain original settings to ensure UDP communication works properly)
+  extraPortMappings:
+  - containerPort: 30005
+    hostPort: 50005
+    protocol: UDP
+  
+  # 2. Kubelet configuration
+  kubeadmConfigPatches:
+  - |
+    kind: KubeletConfiguration
+    # A. Enable static CPU binding policy (original setting was none)
+    cpuManagerPolicy: static
+    # B. Set CPU manager reconciliation period
+    cpuManagerReconcilePeriod: 5s
+    # C. Reserve resources for the system (System Reserved)
+    # Without this configuration, enabling the static policy will cause Kubelet startup to fail
+    kubeReserved:
+      cpu: "500m"
+      memory: "256Mi"
+    systemReserved:
+      cpu: "500m"
+      memory: "256Mi"

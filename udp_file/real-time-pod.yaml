@@ -1,24 +1,24 @@
-
 apiVersion: v1
 kind: Pod
 metadata:
-  name: rt-udp-server-pod # Name for the Pod
+  name: rt-udp-server-pod
   labels:
-    app: rt-udp-server   # Label for the Pod to be discovered by Service
+    app: rt-udp-server
+    real-time: "true"
 spec:
   containers:
   - name: server-container
-    image: yeven880601/rt-udp-server:latest # Docker image uploaded to Docker Hub
+    
+    image: docker.io/library/rt-udp-server:v4
+    imagePullPolicy: Never
+    
     ports:
-    - containerPort: 50005 # Port number used inside the container
+    - containerPort: 50005
       protocol: UDP
-    # --- Important resource configuration (preparation for CPU Pinning) ---
-    # Although CPU Pinning may not be fully simulated in kind environment,
-    # we set up the format in advance
     resources:
       requests:
-        cpu: "1"        # Request 1 CPU core
-        memory: "128Mi" # Request 128 MB memory
+        cpu: "100m"
+        memory: "128Mi"
       limits:
-        cpu: "1"        # Limit to 1 CPU core
-        memory: "128Mi" # Limit to 128 MB memory
+        cpu: "1"
+        memory: "128Mi"
